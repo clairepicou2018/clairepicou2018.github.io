@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Bouncing Box</title>
+	<script src="jquery.min.js"></script>
+
+	<!-- BEGIN CSS -->
+	<style>
+		/* TODO 1 */
+		[class="board"] {
+			background-color: rgb(0,0,0);
+		}
+		
+		[class="box"] {
+			display: block;
+			position: absolute;
+			width: 70px;
+			height: 70px;
+			top: 100px;
+			left: 0px;
+			right: 0px;
+			color: rgb(100, 0, 255);
+			font-size: 350%;
+			text-align: center;
+			border: 1px;
+			border-radius: 25px;
+			background-color: aqua;
+		}
+	</style>
+
+</head>
+<body class="board">
+	<!-- HTML for the box -->
+	<div class="box"></div>
+	<div class="board"></div>
+	<!-- BEGIN JAVASCRIPT -->
+	<script>
+		(function(){
+			'use strict';
+
+			// Variable declarations
+			var box;
+			var boardWidth;
+			var update;
+			var handleBoxClick;
+			//var changeBoxColor;
+
+			// jQuery stuff setup for you
+			box = $('.box');
+			boardWidth = $('.board').width();
+
+			// TODO 2
+			var position;
+			var positionH;
+			var points;
+			var speed;
+			var direction;
+			var directionH;
+			
+			position = 0;
+			positionH = 0;
+			points = 0;
+			speed = 10;
+			direction = 1;
+			directionH = 1;
+		
+			/*
+			//This is a work in progress function to change the color of the box at every click
+			changeBoxColor = function(rgb1, rgb2, rgb3) {
+				rgb1 = Math.round(Math.random(rgb1) * 255);
+				rgb2 = Math.round(Math.random(rgb2) * 255);
+				rgb3 = Math.round(Math.random(rgb3) * 255);
+				return ["rgb(",rgb1,",",rgb2,",",rgb3,")"].join("");
+			};
+			*/
+			
+			// TODO 3 / 4
+			update = function() {
+				position = position + (speed*direction);
+				positionH = positionH + (speed*directionH);
+				if(position >= (boardWidth - 75) || position < 0) {
+					direction = (direction * -1);
+				}
+				if (positionH > 580 || positionH < 0) {
+					directionH = (directionH * -1);
+				}
+				box.css('left' , position);
+				box.css('top' , positionH);
+				box.text(points);
+			};
+
+
+			// TODO 5 / 6
+			handleBoxClick = function() {
+				points = points + 1;
+				speed = speed + 3;
+				//Teleports the box to a random vertical and horizantal position upon every click
+				position = (Math.random() * 1200);
+				positionH = (Math.random() * 579);
+					
+			};
+
+
+			//this calls update every 50 milliseconds
+			setInterval(update, 50);
+			// this calls the handle handleBoxClick function every time the box is clicked on
+			box.on('click', handleBoxClick);
+		})();
+	</script>
+</body>
+</html>
+

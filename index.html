@@ -46,11 +46,35 @@
             }
     
             /* main container area beneath menu */
-            main {
+            [class = main1] {
                 background: rgb(255, 145, 1);
                 display: flex;
                 border: 1px;
                 border-radius: 25px;
+            }
+            [class = main2] {
+                background: rgb(39, 89, 45);
+                border: 1px;
+                border-radius: 25px;
+                display: flex;
+                visibility: hidden;
+            }
+            [class = professional-content] {
+                color: white;
+                flex: 1;
+                padding: 15px;
+            }
+            [class = professional-interests] header {
+                font-size: 1.1em;
+                text-decoration: underline;
+            }
+            [class = professional-interests] ul {
+                list-style-type: none;
+                line-height: 30%;
+            }
+            [class = professional-interests] li {
+                display: flex;
+                padding: 0 10px;
             }
             [class=sidebar] {
                 margin-right: 25px;
@@ -60,6 +84,8 @@
                 width: 200px;
                 border: 1px;
                 border-radius: 25px;
+                margin: auto;
+                vertical-align: central;
             }
             [class=content] {
                 flex: 1;
@@ -70,7 +96,44 @@
                 font-size: 1.1em;
                 text-decoration: underline;
             }
+            [class = interests] ul {
+                line-height: 30%;
+            }
+            [class = fun-mode] {
+                display: none;
+                font-family: 'Comic Sans MS';
+            }
+            [class = professional-mode] {
+                padding-right: -30px;
+            }
         </style>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+        <script>
+            
+            var clickCounter = 0;
+            
+            $(document).ready(function(){
+                $('button').click(function(){
+                    clickCounter = (clickCounter + 1);
+                    if (clickCounter % 2 != 0) {
+                        $('main.main2').css('visibility', 'visible');
+                        $('main.main1').toggle();
+                        $('body').css('background', 'rgb(210, 213, 216)');
+                        $('button.professional-mode').toggle();
+                        $('button.fun-mode').toggle();
+                        $('nav').css('background', 'rgb(119, 136, 153)')
+                    } else if (clickCounter % 2 === 0) {
+                        $('main.main2').css('visibility', 'hidden');
+                        $('main.main1').toggle();
+                        $('body').css('background', 'rgb(217, 255, 240)');
+                        $('button.professional-mode').toggle();
+                        $('button.fun-mode').toggle();
+                        $('nav').css('background', 'rgb(66, 154, 223)');
+                    }
+                    
+                });
+            });
+        </script>
     </head>
     
      <body>
@@ -78,27 +141,45 @@
              <nav>
                  <header>Claire's Website</header>
                  <ul>
+                     <li><button class = 'fun-mode'>Fun Mode</button></li>
+                     <li><button class = 'professional-mode'>Professional Mode</button></li>
                      <li><a href="index.html">Home</a></li>
                      <li><a href="portfolio.html">Portfolio</a></li>
                  </ul>
              </nav>
              
-             <main>
+             <main class = 'main1'>
                  <div class="sidebar">
-                     <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQgc5jslLMEmbb6QxIQZL4nJ8Vse2VjLQGrcHursHL3nMU85BspYQ">
+                     <img src="https://i.pinimg.com/736x/37/d1/02/37d102d7c139a99e4dfbf88ff761f9e3--pictures-for-desktop-pictures-images.jpg">
                  </div>
                  
                  <div class="content">
                      <header>Claire Picou</header>
-                     <p>Team 1912 Combustion President</p>
-                     <p>Northshore High School Senior</p>
+                     <p>Phoenix Queen of the Robotics Team</p>
+                     <p>"I Survived Junior Year!"</p>
                      <section class="interests">
                         <header>Interests:</header>
                             <ul>-Building robots</ul>
                             <ul>-Competitive trivia</ul>
                             <ul>-Computer gaming</ul>
-                            <ul>-Coding</ul>
+                            <ul>-Digital art</ul>
                      </section>      
+                 </div>
+             </main>
+             <main class = 'main2'>
+                 <div class = 'sidebar'>
+                     <img src = 'ProfessionalImage.jpg'>
+                 </div>
+                 <div class = 'professional-content'>
+                    <header>Claire Picou</header>
+                    <p>Team 1912 Combustion President</p>
+                    <p>Northshore High School Senior</p>
+                    <section class = 'professional-interests'>
+                        <header>Professional Interests:</header>
+                            <ul>-Astronautical Engineering</ul>
+                            <ul>-Carpentry</ul>
+                            <ul>-Game Development</ul>
+                    </section>
                  </div>
              </main>
              
